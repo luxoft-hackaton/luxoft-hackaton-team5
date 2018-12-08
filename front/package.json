@@ -1,0 +1,33 @@
+{
+  "name": "create-react-app-with-jss",
+  "version": "3.2.2",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "latest",
+    "@material-ui/icons": "^3.0.1",
+    "axios": "^0.18.0",
+    "babel-loader": "^8.0.4",
+    "jss": "latest",
+    "lodash": "^4.17.11",
+    "prop-types": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-jss": "latest",
+    "react-redux": "^5.1.1",
+    "react-scripts": "latest",
+    "redux": "^4.0.1",
+    "redux-devtools-extension": "^2.13.6"
+  },
+  "scripts": {
+    "start": "PORT=3006 react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}

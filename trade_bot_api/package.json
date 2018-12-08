@@ -1,0 +1,26 @@
+{
+  "name": "trade_bot_api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "fastify": "^1.13.0",
+    "fastify-cors": "^0.2.0",
+    "moment": "^2.22.2",
+    "pg": "^7.6.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bdesim/trade_bot_api.git"
+  },
+  "author": "bdesim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bdesim/trade_bot_api/issues"
+  },
+  "homepage": "https://github.com/bdesim/trade_bot_api#readme"
+}

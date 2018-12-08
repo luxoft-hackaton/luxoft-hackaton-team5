@@ -1,0 +1,78 @@
+version: '3.4'
+
+x-logging: &default-logging
+    options:
+        max-size: '1m'
+        max-file: '10'
+    driver: json-file
+
+x-base-service: &base-service
+    image: base_image:v1
+    build:
+        context: ./scraper
+        dockerfile: ./Dockerfile
+    restart: always
+    environment:
+        REDIS_URL: redis://redis:6379/
+        DB_URL: postgres://postgres:postgres@db:5432/postgres?client_encoding=utf8
+    depends_on:
+        - db
+    links:
+        - db
+    logging: *default-logging
+
+services:
+    db:
+        restart: always
+        hostname: hackaton-postgres
+        container_name: hackaton-postgres
+        build:
+            context: ./hackaton-db
+            dockerfile: ./Dockerfile
+        volumes:
+            - ./hackaton-db/data:/var/lib/postgresql/data
+        ports:
+            - '5433:5432'
+
+    scraper-tickers:
+        <<: *base-service
+        container_name: scraper-tickers
+        command: 'node src/tickers.js'
+
+    bot:
+        image: bot:latest
+        build:
+            context: ./telegramBot
+            dockerfile: ./Dockerfile
+        restart: always
+        depends_on:
+            - bot-api
+        links:
+            - bot-api
+
+    bot-api:
+        image: trade-bot-api:latest
+        build:
+            context: ./trade_bot_api
+            dockerfile: ./Dockerfile
+        restart: always
+        environment:
+            CONNECTION_STRING: postgresql://postgres:postgres@hackaton-postgres:5432/postgres
+        depends_on:
+            - db
+        links:
+            - db
+        ports:
+            - '3000:3000'
+    front:
+        image: front:latest
+        build:
+            context: ./front
+            dockerfile: ./Dockerfile
+        restart: always
+        depends_on:
+            - bot-api
+        links:
+            - bot-api
+        ports:
+            - '3006:3006'
