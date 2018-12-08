@@ -1,4 +1,8 @@
-# Crypto Monitor
+# CryptoOwl
+
+## Presentation
+
+https://docs.google.com/presentation/d/1qQUI-8StG7nFsG5CDha-G0phulK6EkYFFVrp9MBX_T8/edit?usp=sharing
 
 ## How to run
 ```
